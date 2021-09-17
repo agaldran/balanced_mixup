@@ -1,5 +1,5 @@
-# Title
-## subtitle
+# Balanced-MixUp for Highly Imbalanced Medical Image Classification
+## Summary
 This repository contains the code accompanying the paper:
 ```
 Balanced-MixUp for Highly Imbalanced Medical Image Classification
