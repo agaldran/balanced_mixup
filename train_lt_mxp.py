@@ -16,7 +16,6 @@ from utils.model_saving_loading import save_model, str2bool, load_model
 from utils.reproducibility import set_seeds
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from utils.sam import SAM
 from typing import Tuple
 
 # argument parsing
@@ -148,15 +147,7 @@ def run_one_epoch(loader, model, criterion, do_mixup=0., optimizer=None, assess=
 
             if train:  # only in training mode
                 loss.backward()
-                if isinstance(optimizer, SAM):
-                    optimizer.first_step(zero_grad=True)
-                    logits = model(inputs)
-                    loss = cross_entropy_loss(logits, mixed_labels)
-                    loss.backward()  # for grad_acc_steps=0, this is just loss
-                    optimizer.second_step(zero_grad=True)
-                else:
-                    optimizer.step()
-
+                optimizer.step()
                 optimizer.zero_grad()
 
             if assess:
@@ -195,7 +186,7 @@ def train_model(model, sampling, optimizer, train_criterion, val_criterion, do_m
         # Modify sampling
         combo_loader = get_combo_loader(train_loader, base_sampling=sampling)
         # train one epoch
-        tr_preds, tr_probs, tr_labels, tr_loss = run_one_epoch(combo_loader, model, train_criterion, do_mixup, optimizer, assess=True)
+        _, _, _, _ = run_one_epoch(combo_loader, model, train_criterion, do_mixup, optimizer, assess=True)
 
         with torch.no_grad():
             tr_preds, tr_probs, tr_labels, tr_loss = run_one_epoch(train_loader, model, val_criterion, assess=True)
@@ -341,11 +332,6 @@ if __name__ == '__main__':
         optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     elif optimizer_choice == 'sgd':
         optimizer = torch.optim.SGD(model.parameters(), lr=lr, weight_decay=args.wd)
-    elif optimizer_choice == 'sgd_repvgg':
-        optimizer = sgd_optimizer(model, lr=lr, momentum=0, weight_decay=args.wd)
-    elif optimizer_choice == 'sgd_sam':
-        base_optimizer = torch.optim.SGD  # define an optimizer for the "sharpness-aware" update
-        optimizer = SAM(model.parameters(), base_optimizer, lr=lr, momentum=0)
     else:
         sys.exit('please choose a valid optimizer')
 

@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# EYEPACS EXPERIMENTS
+#python train_lt_mxp.py --save_path eyepacs/mxp_1e-1/mobilenet --model_name mobilenetV2  --do_mixup  0.1 --n_epochs 30 --metric kappa
+#python train_lt_mxp.py --save_path eyepacs/mxp_1e-2/mobilenet --model_name mobilenetV2  --do_mixup  0.2 --n_epochs 30 --metric kappa
+#python train_lt_mxp.py --save_path eyepacs/mxp_1e-3/mobilenet --model_name mobilenetV2  --do_mixup  0.3 --n_epochs 30 --metric kappa
+#python train_lt.py --save_path eyepacs/sqrt/mobilenet         --model_name mobilenetV2 --sampling sqrt --n_epochs 30 --metric kappa
+#python train_lt.py --save_path eyepacs/class/mobilenet        --model_name mobilenetV2 --sampling class --n_epochs 30 --metric kappa
+#python train_lt.py --save_path eyepacs/instance/mobilenet     --model_name mobilenetV2 --sampling instance --n_epochs 30 --metric kappa
+
+# ENDOSCOPY EXPERIMENTS
 python train_lt_mxp.py --save_path endo/F1/mxp_1e-1/mobilenetV2 --csv_train data/train_endo1.csv --data_path data/images --model_name mobilenetV2  --do_mixup  0.1    --n_epochs 30 --metric mcc --n_classes 23
 python train_lt_mxp.py --save_path endo/F1/mxp_2e-1/mobilenetV2 --csv_train data/train_endo1.csv --data_path data/images --model_name mobilenetV2  --do_mixup  0.2    --n_epochs 30 --metric mcc --n_classes 23
 python train_lt_mxp.py --save_path endo/F1/mxp_3e-1/mobilenetV2 --csv_train data/train_endo1.csv --data_path data/images --model_name mobilenetV2  --do_mixup  0.3    --n_epochs 30 --metric mcc --n_classes 23
@@ -35,13 +44,3 @@ python train_lt_mxp.py --save_path endo/F5/mxp_3e-1/mobilenetV2 --csv_train data
 python train_lt.py --save_path endo/F5/sqrt/mobilenetV2  --csv_train data/train_endo5.csv --data_path data/images        --model_name mobilenetV2 --sampling sqrt     --n_epochs 30 --metric mcc --n_classes 23
 python train_lt.py --save_path endo/F5/class/mobilenetV2  --csv_train data/train_endo5.csv --data_path data/images       --model_name mobilenetV2 --sampling class    --n_epochs 30 --metric mcc --n_classes 23
 python train_lt.py --save_path endo/F5/instance/mobilenetV2  --csv_train data/train_endo5.csv --data_path data/images    --model_name mobilenetV2 --sampling instance --n_epochs 30 --metric mcc --n_classes 23
-
-
-#python train_lt_mxp.py --save_path eyepacs/mxp_1e-2/mobilenet --model_name mobilenetV2  --do_mixup  0.2 --n_epochs 30 --metric kappa
-#python train_lt.py --save_path eyepacs/sqrt/mobilenet         --model_name mobilenetV2 --sampling sqrt --n_epochs 30 --metric kappa
-#python train_lt.py --save_path eyepacs/class/mobilenet        --model_name mobilenetV2 --sampling class --n_epochs 30 --metric kappa
-#python train_lt.py --save_path eyepacs/instance/mobilenet     --model_name mobilenetV2 --sampling instance --n_epochs 30 --metric kappa
-#python train_lt_mxp.py --save_path eyepacs/mxp_1e-1/mobilenet --model_name mobilenetV2  --do_mixup  0.1 --n_epochs 30 --metric kappa
-#python train_lt_mxp.py --save_path eyepacs/mxp_1e-3/mobilenet --model_name mobilenetV2  --do_mixup  0.3 --n_epochs 30 --metric kappa
-
-
