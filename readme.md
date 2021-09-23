@@ -4,7 +4,7 @@ This repository contains the code accompanying the paper:
 ```
 Balanced-MixUp for Highly Imbalanced Medical Image Classification
 Adrian Galdran, Gustavo Carneiro, Miguel A. González Ballester
-MICCAI 2021
+MICCAI 2021, Link: [https://arxiv.org/abs/2109.09850](https://arxiv.org/abs/2109.09850)
 ```
 
 Balanced MixUp is a relatively simple approach to perform classification on imbalanced data scenarios. It combines MixUp with conventional data sampling techniques. Briefly speaking, the idea is to sample a training data batch with minority class oversampling, another one without it, and then mix them up, normally giving more weight to the non-oversampled batch to avoid overfitting. In the paper, which you can find [here](https://arxiv.org/abs/2109.09850), we show that this approach improves performance for retinal image grading and endoscopic image classification.
