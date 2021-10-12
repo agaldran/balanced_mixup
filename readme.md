@@ -19,7 +19,7 @@ python train_lt_mxp.py --do_mixup 0.1 --save_path eyepacs/mxp_1e-1/mobilenet --m
 
 Please let me know if there is something that does not work as expected by opening an issue. Good luck!
 
-* Install kaggle datasets API and use it to get Eyepacs data in place by running:
+\* Install kaggle datasets API and use it to get Eyepacs data in place by running:
 ```
 pip install kaggle
 kaggle datasets download agaldran/eyepacs
